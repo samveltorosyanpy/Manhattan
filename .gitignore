@@ -1,0 +1,7 @@
+.fleet
+.idea
+bot/.idea
+bot/.env
+bot/docker-compose.yml
+bot/dockerfile
+bot/venv

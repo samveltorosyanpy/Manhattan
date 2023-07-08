@@ -1,0 +1,52 @@
+version: '3'
+services:
+  manhattan:
+    container_name: ManhattanTelegram
+    build: /bot/.
+    restart: always
+    command: python3 app.py
+    ports:
+      - '3001:3001'
+    environment:
+      #            bot
+      NGROK_AUT_TOKEN: 2DPACMYMqf4XaSkPd5v8WhCwEFb_7LkZjRQKFY4nKrVqc1Jbw
+      BOT_TOKEN: 6085667530:AAHriQvZwx-K7j6gh6n-Y1KH072X0KMyAf8
+      WEBHOOK_PORT: 3001
+      WEBHOOK_HOST: 127.0.0.1
+      WEBHOOK_DOMAIN: https://dragonsol.online
+      #            redis
+      REDIS_PORT: 6379
+      REDIS_DB: 1
+      REDIS_HOST: redis
+      REDIS_PASSWORD: redis_pass
+      #            postgres
+      POSTGRES_STR: postgresql://postgres:postgres@postgres:5432/manhattan
+    depends_on:
+      - postgres
+      - redis
+  redis:
+    image: redis:6.2-alpine
+    container_name: ManhattanRedis
+    restart: always
+    command: redis-server --save 20 1 --loglevel warning --requirepass redis_pass
+    ports:
+      - '6380:6379'
+    volumes:
+      - redis_data:/data
+  postgres:
+    container_name: ManhattanPostgres
+    image: postgres:14.1-alpine
+    restart: always
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+      - POSTGRES_DB=manhattan
+    ports:
+      - '5433:5432'
+    volumes:
+      - postgres:/var/lib/postgresql/data
+
+volumes:
+  postgres:
+    driver: local
+  redis_data:

@@ -1,0 +1,2 @@
+from .NewWorkDay import register_message_handlers_new_work_day
+from .CashBoxChangeShiftDay import register_message_handlers_cash_box_usm_update
