@@ -9,7 +9,6 @@ from dotenv import load_dotenv
 from aiogram import Bot, Dispatcher
 from aiogram.contrib.fsm_storage.redis import RedisStorage2
 
-
 load_dotenv()
 
 # REDIS DATABASE
@@ -18,15 +17,18 @@ storage = RedisStorage2(host=os.environ.get('REDIS_HOST'), port=int(os.environ.g
 
 # BOT WEBHOOK
 
-OWNER_BOT = 1357108258
+USERS_ID = {
+    'Samvel': 1357108258,
+    'Armina': 1279577233,
+    'Suren': 636655056,
+    'Lox': 325146197,
+    'Hayk': 5836065768
+}
+
+OWNER_BOT = USERS_ID['Samvel']
 ADMIN_ID = [1357108258, 636655056]
 SEND_DAY_MESSAGE = [1279577233, 636655056, 1357108258]
-STAFF = [325146197, 1357108258, 636655056]
-
-# Samvel = 1357108258
-# Armina = 1279577233
-# suren = 636655056
-# Lox = 325146197
+STAFF = [325146197, 1357108258, 636655056, 5836065768]
 
 TOKEN = os.environ.get("BOT_TOKEN")
 
