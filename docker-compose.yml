@@ -2,7 +2,7 @@ version: '3'
 services:
   manhattan:
     container_name: ManhattanTelegram
-    build: /bot/.
+    build: bot/.
     restart: always
     command: python3 app.py
     ports:
