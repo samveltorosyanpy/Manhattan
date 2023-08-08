@@ -1,7 +1,7 @@
 from aiogram import types, Dispatcher
 from aiogram.dispatcher import FSMContext
 from src.utils import is_valid_integer
-from conf import logger
+from loader import logger
 from src.keyboards import inline
 from src.services.redis.storageTables import storage_colected_new_work_day
 

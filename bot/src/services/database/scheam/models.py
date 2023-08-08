@@ -1,11 +1,8 @@
 from sqlalchemy import ForeignKey, select, desc, Column, DateTime, Integer, ARRAY, String, create_engine, and_, func
 from sqlalchemy.orm import sessionmaker, declarative_base, relationship
-import os
-from dotenv import load_dotenv
+from data import config
 
-load_dotenv()
-
-engine = create_engine(os.environ.get('POSTGRES_STR'))
+engine = create_engine(config.POSTGRES_URL)
 
 Base = declarative_base()
 

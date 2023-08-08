@@ -3,42 +3,32 @@ from src.services import Logger, CashBoxTable
 import os
 import datetime
 from pyngrok import ngrok
-
-from dotenv import load_dotenv
+from data import config
 
 from aiogram import Bot, Dispatcher
 from aiogram.contrib.fsm_storage.redis import RedisStorage2
 
-load_dotenv()
 
 # REDIS DATABASE
-storage = RedisStorage2(host=os.environ.get('REDIS_HOST'), port=int(os.environ.get('REDIS_PORT')),
-                        db=os.environ.get('REDIS_DB'), password=os.environ.get('REDIS_PASSWORD'))
+storage = RedisStorage2(host=config.REDIS_HOST, port=config.REDIS_PORT,
+                        db=config.REDIS_DB, password=config.REDIS_PASSWORD)
 
 # BOT WEBHOOK
 
-Samvel = 1357108258
-Armina = 1279577233
-Suren = 636655056
-Hayk = 5836065768
+OWNER_BOT = config.Samvel
+ADMIN_ID = [config.Samvel, config.Suren]
+SEND_DAY_MESSAGE = [config.Suren, config.Samvel]
+STAFF = [config.Samvel, config.Suren, config.Hayk]
 
-OWNER_BOT = Samvel
-ADMIN_ID = [Samvel, Suren]
-SEND_DAY_MESSAGE = [Suren, Samvel]
-STAFF = [Samvel, Suren, Hayk]
-
-TOKEN = os.environ.get("BOT_TOKEN")
+TOKEN = config.TOKEN
 
 bot = Bot(TOKEN)
 Bot.set_current(bot)
 dp = Dispatcher(bot, storage=storage)
 
-webhook_path = f'/{TOKEN}'
-webhook_host = os.environ.get('WEBHOOK_HOST')
-webhook_port = int(os.environ.get('WEBHOOK_PORT'))
-
 ngrok.conf.get_default().auth_token = os.environ.get('NGROK_AUT_TOKEN')
-webhook_url = ngrok.connect(webhook_port).public_url
+webhook_url = ngrok.connect(config.WEBHOOK_PORT).public_url
+
 # LOGGER
 dt = datetime.datetime.now().strftime("%Y-%m-%d")
 log_dir = f"{os.path.dirname(os.path.abspath(__file__))}/src/services/LoggerService/logs/{dt}"

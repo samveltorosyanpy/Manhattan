@@ -1,14 +1,18 @@
-from conf import bot, webhook_url, TOKEN, OWNER_BOT, dp, webhook_host, webhook_port
+from loader import TOKEN, OWNER_BOT, dp, webhook_url
+from data import config
 from aiohttp import web
 from aiogram import types
 from src.handlers import message_handlers, commands, CallBacks
 from aiogram.dispatcher.webhook import get_new_configured_app
 
 
-
 async def on_startup(_):
-    await bot.set_webhook(f'{webhook_url}/{TOKEN}')
-    await bot.send_message(chat_id=OWNER_BOT, text='Bot has been started')
+    await dp.bot.set_webhook(f'{config.WEBHOOK_DOMAIN}/{TOKEN}')
+    await dp.bot.send_message(chat_id=OWNER_BOT, text='Bot has been started')
+    # await dp.bot.set_my_commands(
+    #     types.BotCommand('start', 'Starting bot'),
+    #     types.BotCommand('admin', 'Admin configs')
+    # )
 
     CallBacks.register_message_handlers_callback(dp)
     commands.register_command_handlers(dp)
@@ -17,7 +21,7 @@ async def on_startup(_):
 
 
 async def on_shutdown(_):
-    await bot.send_message(chat_id=OWNER_BOT, text='Bot has been stopped')
+    await dp.bot.send_message(chat_id=OWNER_BOT, text='Bot has been stopped')
 
 
 async def handle_webhook(request):
@@ -36,6 +40,6 @@ if __name__ == "__main__":
     app.on_shutdown.append(on_shutdown)
     web.run_app(
         app=app,
-        host=webhook_host,
-        port=webhook_port
+        host=config.WEBHOOK_HOST,
+        port=config.WEBHOOK_PORT
     )

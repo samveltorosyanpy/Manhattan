@@ -1,6 +1,6 @@
 from aiogram import types, Dispatcher
 from src.keyboards import CashBoxButtons
-from conf import logger
+from loader import logger
 
 
 async def com_start(msg: types.Message) -> None:

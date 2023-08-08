@@ -14,6 +14,11 @@ services:
       WEBHOOK_PORT: 3001
       WEBHOOK_HOST: 127.0.0.1
       WEBHOOK_DOMAIN: https://dragonsol.online
+      #            users
+      SAMVEL: 1357108258
+      ARMINA: 1279577233
+      SUREN: 636655056
+      HAYK: 5836065768
       #            redis
       REDIS_PORT: 6379
       REDIS_DB: 1
@@ -45,7 +50,6 @@ services:
       - '5433:5432'
     volumes:
       - postgres:/var/lib/postgresql/data
-
 volumes:
   postgres:
     driver: local

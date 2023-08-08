@@ -1,8 +1,8 @@
-from src.keyboards import inline
+from src.keyboards import inline as d
 from aiogram import types, Dispatcher
 from aiogram.dispatcher import FSMContext
 
-from conf import logger, bot, ADMIN_ID, database_table_cash_box, SEND_DAY_MESSAGE
+from loader import logger, bot, ADMIN_ID, database_table_cash_box, SEND_DAY_MESSAGE
 from src.services.redis.storageTables import storage_colected_change_day, storage_colected_new_work_day
 
 
