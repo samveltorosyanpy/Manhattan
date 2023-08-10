@@ -10,7 +10,6 @@ jobs:
       - run: docker-compose -f docker-compose.yml up -d
       - run: sleep 5
       - run: docker-compose down
-
       - name: ssh key passphrase
         uses: appleboy/ssh-action@v1.0.0
         with:
