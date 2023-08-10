@@ -13,7 +13,7 @@ jobs:
       - run: docker-compose down
 
   deploy:
-    run-on: ubuntu-latest
+    runs-on: ubuntu-latest
     steps:
       - name: executing remote ssh commands using password
       - uses: appleboy/ssh-action@v1.0.0
