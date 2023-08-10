@@ -12,9 +12,6 @@ jobs:
       - run: sleep 5
       - run: docker-compose down
 
-  deploy:
-    runs-on: ubuntu-latest
-    steps:
       - name: ssh key passphrase
         uses: appleboy/ssh-action@v1.0.0
         with:
