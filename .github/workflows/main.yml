@@ -3,12 +3,22 @@ name: testing_CI
 on: [push]
 
 jobs:
-  test_1:
+  build_and_test:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
-      
+      - uses: actions/checkout@v3      
       - run: docker-compose -f docker-compose.yml build
       - run: docker-compose -f docker-compose.yml up -d
       - run: sleep 5
       - run: docker-compose down
+  deploy:
+    run-on: ubuntu-latest
+    steps:
+      - name: executing remote ssh commands using password
+      uses: appleboy/ssh-action@v1.0.0
+      with:
+        host: ${{ secrets.SSH_HOST }}
+        username: ${{ secrets.SSH_USERNAME }}
+        key: ${{ secrets.SSH_KEY }}
+        port: ${{ secrets.SSH_PORT }}
+        script: whoami
