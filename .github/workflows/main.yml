@@ -3,8 +3,9 @@ name: testing_CI
 on: [push]
 
 jobs:
-  runs_on: ubuntu-latest
-  steps:
-    - run: ls
-    - uses: actions/checkout@v3
-    - run: ls
+  test_1:
+    runs_on: ubuntu-latest
+    steps:
+      - run: ls
+      - uses: actions/checkout@v3
+      - run: ls
