@@ -10,4 +10,4 @@ jobs:
       - run: docker-compose -f docker-compose.yml build
       - run: docker-compose -f docker-compose.yml up -d
       - run: sleep 5
-      - run: docker-compsoe down
+      - run: docker-compose down
