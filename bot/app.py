@@ -7,7 +7,7 @@ from aiogram.dispatcher.webhook import get_new_configured_app
 
 
 async def on_startup(_):
-    await dp.bot.set_webhook(f'{config.WEBHOOK_DOMAIN}/{TOKEN}')
+    await dp.bot.set_webhook(f'{webhook_url}/{TOKEN}')
     await dp.bot.send_message(chat_id=OWNER_BOT, text='Bot has been started')
     # await dp.bot.set_my_commands(
     #     types.BotCommand('start', 'Starting bot'),

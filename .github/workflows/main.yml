@@ -8,6 +8,6 @@ jobs:
     steps:
       - uses: actions/checkout@v3
       - run: docker-compose -f docker-compose.yml build
-      - run: docker-compose -f docker-compose.yml up
+      - run: docker-compose -f docker-compose.yml up -d
       - run: sleep 15
       - run: docker-compsoe -f docker-compose.yml down
