@@ -6,6 +6,5 @@ jobs:
   test_1:
     runs-on: ubuntu-latest
     steps:
-      - run: ls
       - uses: actions/checkout@v3
-      - run: ls
+      - run: docker
